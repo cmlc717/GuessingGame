@@ -14,6 +14,14 @@ const body = document.querySelector("body");
 //if right, return win
 //if wrong, return lose and give a hint
 guessBtn.addEventListener("click", evaluateGuess);
+
+guess.addEventListener("keydown", (event)=>  {
+    // If the user presses the "Enter" key on the keyboard
+    if (event.key === "Enter") {
+        evaluateGuess();
+    }
+});
+
 let prevGuesses = [];
 let numberOfTries = 0;
 let div = document.createElement("div");
@@ -21,7 +29,7 @@ body.append(div);
 
 function evaluateGuess() {
     let theirGuess = Number(guess.value);
-    if (typeof(theirGuess) != "number") {
+    if (isNaN(theirGuess)) {
         h3.textContent = "That isn't a number...";
     } else if (prevGuesses.includes(theirGuess)) {
         h3.textContent = "You guessed that already!";
