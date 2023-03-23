@@ -55,6 +55,7 @@ function evaluateGuess() {
         h3.textContent = "You're cold! Try guessing higher.";
         trackGuess(theirGuess);
     } 
+    guess.value = "";
 }
 
 function restartGame(){
@@ -66,6 +67,7 @@ function restartGame(){
         div.removeChild(div.firstChild);
     }
     prevGuesses = [];
+    guess.value = "";
 }
 
 //show old guesses
