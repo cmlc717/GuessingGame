@@ -1,5 +1,5 @@
 //generate number
-let correctNum = Math.floor((Math.random() * 99) + 1);
+let correctNum = Math.floor((Math.random() * 100) + 1);
 console.log(correctNum);
 
 //grab guess
@@ -26,30 +26,33 @@ function evaluateGuess() {
     } else if (prevGuesses.includes(theirGuess)) {
         h3.textContent = "You guessed that already!";
     } else if (theirGuess > 100 || theirGuess < 1) {
-        h3.textContent = "That guess is out of range."
+        h3.textContent = "That guess is out of range.";
     } else if (theirGuess === correctNum) {
-        h3.textContent = "You win!"
-        restartGame();
+        h3.textContent = "You win! Press reset to play again.";
+        guessBtn.disabled = true;
+    } else if (numberOfTries === 4 && theirGuess === correctNum) {
+        h3.textContent = "You win! Press reset to play again.";
+        guessBtn.disabled = true;
     } else if (numberOfTries === 4 && theirGuess != correctNum) {
-        h3.textContent = "You lose! The correct answer was " + correctNum + ". Press reset to play again.";
+        h3.textContent = "You lose! The correct number was " + correctNum + ". Press reset to play again.";
         guessBtn.disabled = true;
     } else if (theirGuess > correctNum && theirGuess - correctNum > 20) {
-        h3.textContent = "You're cold! Try guessing lower."
+        h3.textContent = "You're cold! Try guessing lower.";
         trackGuess(theirGuess);
     }  else if (theirGuess > correctNum && theirGuess - correctNum <= 20 &&  theirGuess - correctNum >= 5) {
-        h3.textContent = "You're warm! Try guessing lower."
+        h3.textContent = "You're warm! Try guessing lower.";
         trackGuess(theirGuess);
     } else if (theirGuess > correctNum && theirGuess - correctNum < 5) {
-        h3.textContent = "You're ON FIRE! Try guessing lower."
+        h3.textContent = "You're ON FIRE! Try guessing lower.";
         trackGuess(theirGuess);
     } else if (theirGuess < correctNum && correctNum - theirGuess < 5) {
-        h3.textContent = "You're ON FIRE! Try guessing higher."
+        h3.textContent = "You're ON FIRE! Try guessing higher.";
         trackGuess(theirGuess);
     } else if (theirGuess < correctNum && correctNum - theirGuess <= 20 && correctNum - theirGuess >= 5) {
-        h3.textContent = "You're warm! Try guessing higher."
+        h3.textContent = "You're warm! Try guessing higher.";
         trackGuess(theirGuess);
     } else if (theirGuess < correctNum && correctNum - theirGuess > 20) {
-        h3.textContent = "You're cold! Try guessing higher."
+        h3.textContent = "You're cold! Try guessing higher.";
         trackGuess(theirGuess);
     } 
 }
@@ -84,11 +87,11 @@ function hintMaker(){
     let hintArr = [];
 
     for(let i = 0; i<3; i++) {
-        let hint = Math.floor((Math.random() * 99) + 1);
+        let hint = Math.floor((Math.random() * 100) + 1);
         while (hintArr.includes(hint)) {
-            hint = Math.floor((Math.random() * 99) + 1);
+            hint = Math.floor((Math.random() * 100) + 1);
             if (hint === correctNum) {
-               hint = Math.floor((Math.random() * 99) + 1);
+               hint = Math.floor((Math.random() * 100) + 1);
             }
         }
         hintArr.push(hint);
